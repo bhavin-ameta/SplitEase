@@ -25,11 +25,12 @@ namespace SplitEase.Services
         }
 
 
+
         public async Task<ApiResponse<UserResponseDto>> RegisterUser(UserDto dto)
         {
-            var existingUser = await _context.UsersRegister.FirstOrDefaultAsync(u => u.Email == dto.Email);
+            var emailExists = await _context.UsersRegister.FirstOrDefaultAsync(u => u.Email == dto.Email);
 
-            if (existingUser != null)
+            if (emailExists != null)
             {
                 return ApiResponse<UserResponseDto>.Fail(Message.EmailAlreadyExists);
             }
@@ -44,6 +45,7 @@ namespace SplitEase.Services
 
             return ApiResponse<UserResponseDto>.Success(Message.RegistrationSuccess, userResponse);
         }
+
 
         public async Task<ApiResponse<LoginResponseDto>> LoginUser(LoginDto dto)
         {

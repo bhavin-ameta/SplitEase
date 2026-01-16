@@ -6,6 +6,7 @@ using SplitEase.Helpers;
 using SplitEase.Models;
 using SplitEase.ProfileMapper;
 using SplitEase.Services;
+using System;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,8 +28,8 @@ builder.Services.AddHttpContextAccessor();
 
 // Add DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("dbcs"))
-);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("dbcs")));
+
 
 // Add AutoMapper
 var mapConfig = new MapperConfiguration(mc =>
@@ -76,11 +77,13 @@ builder.Services
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure middleware
 
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 
 //app.UseHttpsRedirection();

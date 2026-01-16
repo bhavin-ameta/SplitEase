@@ -12,7 +12,7 @@ using SplitEase.Models;
 namespace SplitEase.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251212193131_InitialCreate")]
+    [Migration("20251216083441_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace SplitEase.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.8")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
